@@ -60,6 +60,7 @@ public class Menu implements ActionListener {
 	private String tempJel = "";
 	private int jelolo;
 	private String[] muvSor = new String[3];
+	private boolean elojelValtasVolt = false;
 	private boolean egyszeruSzamolo = true;
 			
 	public boolean isEgyszeruSzamolo() {
@@ -189,6 +190,7 @@ public class Menu implements ActionListener {
 				
 				osztodGomb.setActionCommand("/");
 				tizedesGomb.setActionCommand(".");
+				elojelGomb.setActionCommand("");
 				
 				torloGomb.addActionListener(new ActionListener() {	
 					@Override
@@ -289,23 +291,34 @@ public class Menu implements ActionListener {
 			
 			if (e.getSource() == elojelGomb) {
 				bemenetAlakito(kiiratas.getText());
-				
-						
+										
 				if (muvSor[2].isEmpty() && muvSor[1].isEmpty()) {
 					//Első szám előjelváltása
-					System.out.println("Elso szam elojel valtas");
+					tempSzam1 = Integer.toString(0-Integer.valueOf(szam1));						
 				}else {
 					//Második szám előjelváltása
-					System.out.println("Masodik szam elojel valtas");				
+					System.out.println("Masodik szam elojel valtas");
+					elojelValtasVolt = true;
+					tempSzam2 = Integer.toString(0-Integer.valueOf(muvSor[2]));
+					muvSor[2] = tempSzam2;					
 				}
 					
 			
 			}
-			if (e.getSource() == muveletElvegzo) {				
-				bemenetAlakito(kiiratas.getText());
-				eredmenySzamolProc();
-				kiiratas.setText(kiiratas.getText() + eredmeny);
-				szamoltOsszeg.setText(eredmeny.toString());
+			
+			if (e.getSource() == muveletElvegzo) {
+				if (elojelValtasVolt) {
+					eredmenySzamolProc();
+					kiiratas.setText(kiiratas.getText() + eredmeny);
+					szamoltOsszeg.setText(eredmeny.toString());
+					elojelValtasVolt =  false;
+				}else {
+					bemenetAlakito(kiiratas.getText());
+					eredmenySzamolProc();
+					kiiratas.setText(kiiratas.getText() + eredmeny);
+					szamoltOsszeg.setText(eredmeny.toString());
+				}
+				
 			}
 			
 	}	
@@ -363,8 +376,9 @@ public class Menu implements ActionListener {
 		     szamolo.setMuv_jel(muvSor[1].charAt(0));	
 		     
 		     szamolo.muveletProc();
+		     kiiratas.setText(szamolo.getUzenet());
 		     ertekNullazo();
-		    
+		     szamolo.setUzenet("");
 		     eredmeny = szamolo.getResz_osszeg();		
 	}
 		
@@ -373,6 +387,12 @@ public class Menu implements ActionListener {
 			szam1 = "";
 		    szam2 = "";
 		    muvJel = "";
+		    tempSzam1 = "";
+		    tempSzam2 = "";
+		    tempJel = "";
+		    for (int i=0; i<3; i++) {
+		    	muvSor[i] = "";
+		    }
 			
 	}
 }

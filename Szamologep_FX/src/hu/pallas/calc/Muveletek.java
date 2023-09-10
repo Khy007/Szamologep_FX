@@ -106,7 +106,7 @@ public class Muveletek {
 			case '/': //Osztás
 				
 				if (szam_2 == 0.0f) {
-					setUzenet("Nullaval osztas NEM LEHETSEGES");;
+					setUzenet("0-val osztas NEM LEHETSEGES");;
 					
 				}else if (isKerekites()) {
 					resz_osszeg = Math.round(szam_1 / szam_2);						
