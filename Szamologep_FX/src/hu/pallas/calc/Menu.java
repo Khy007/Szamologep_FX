@@ -204,6 +204,7 @@ public class Menu implements ActionListener {
 				ngyokGomb.setActionCommand("");
 				hatvanyGomb.setActionCommand("");
 				fuggvenyGomb.setActionCommand("");
+				visszaTorloGomb.setActionCommand("");
 				
 				torloGomb.addActionListener(new ActionListener() {	
 					@Override
@@ -280,7 +281,8 @@ public class Menu implements ActionListener {
 			kiiratas.setText(kiiratas.getText() + bemenet);	
 			
 			if (e.getSource() == visszaTorloGomb) {
-				kiiratas.setText(kiiratas.getText().substring(0, kiiratas.getText().length()-2));		
+				if (kiiratas.getText().length() > 0)
+					kiiratas.setText(kiiratas.getText().substring(0, kiiratas.getText().length()-1));		
 			}	
 			
 			if (e.getSource() == reszTorloGomb) {
