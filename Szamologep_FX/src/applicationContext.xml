@@ -15,5 +15,6 @@
       <property name = "egyszeruSzamolo" value = "false"/>          
  </bean> 
   
+  
  
 </beans>

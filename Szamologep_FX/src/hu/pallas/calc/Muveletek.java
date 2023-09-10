@@ -115,9 +115,6 @@ public class Muveletek {
 				}			
 				szamNullazo();
 				break;
-				
-			case 5:
-				break;
 		
 			default:
 				System.out.println("Nincs muveleti jel ertelmezve, vagy szambevitel tortent!");

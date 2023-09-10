@@ -82,14 +82,12 @@ public class Menu implements ActionListener {
 	}
 
 		Menu() {
-
 			ablakKeszit();
 			addActionEvents();	
 		}
 	
-	
-
 	public void ablakKeszit() {
+		
 				frame = new JFrame();
 				//Ablak megnevezése
 				frame.setTitle("Bazsi Pallas SZAMOLOGEP");
@@ -107,8 +105,7 @@ public class Menu implements ActionListener {
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				
 				blackline = BorderFactory.createLineBorder(Color.black);
-				
-				
+								
 				//Gombok formázása elhelyezkedése és mérete	
 				
 				kiiratas.setEditable(false);
@@ -270,8 +267,7 @@ public class Menu implements ActionListener {
 			hatosGomb.addActionListener(this);
 			hetesGomb.addActionListener(this);
 			nyolcasGomb.addActionListener(this);
-			kilencesGomb.addActionListener(this);
-					
+			kilencesGomb.addActionListener(this);					
 	}
 		
 	@Override
