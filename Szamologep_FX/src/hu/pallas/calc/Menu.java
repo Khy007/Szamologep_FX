@@ -78,7 +78,7 @@ public class Menu implements ActionListener {
 	
 	
 
-		public void ablakKeszit() {
+	public void ablakKeszit() {
 				frame = new JFrame();
 				//Ablak megnevezése
 				frame.setTitle("Bazsi Pallas SZAMOLOGEP");
@@ -227,9 +227,9 @@ public class Menu implements ActionListener {
 						szamolo.setMem_osszeg(szamolo.getMem_osszeg() - eredmeny );	
 					}
 				});	
-			}
+	}
 		
-		public void addActionEvents() {
+	public void addActionEvents() {
 			
 			muveletElvegzo.addActionListener(this);
 			tizedesGomb.addActionListener(this);
@@ -252,10 +252,10 @@ public class Menu implements ActionListener {
 			nyolcasGomb.addActionListener(this);
 			kilencesGomb.addActionListener(this);
 					
-		}
+	}
 		
-		@Override
-		public void actionPerformed(ActionEvent e) {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 		
 			bemenet = e.getActionCommand();	
 			kiiratas.setText(kiiratas.getText() + bemenet);	
@@ -308,9 +308,9 @@ public class Menu implements ActionListener {
 				szamoltOsszeg.setText(eredmeny.toString());
 			}
 			
-		}	
+	}	
 		
-		public void tempAlakito(String input) {
+	public void tempAlakito(String input) {
 			char[] temp = input.toCharArray();
 			tempSzam2 = "";
 			
@@ -319,9 +319,9 @@ public class Menu implements ActionListener {
 					tempSzam2 += temp[i];
 				}
 			}
-		}
+	}
 		
-		public void bemenetAlakito(String input) {
+	public void bemenetAlakito(String input) {
 					
 		    char[] arr = input.toCharArray();
 		    
@@ -354,9 +354,9 @@ public class Menu implements ActionListener {
 				muvSor[2] = tempSzam2;
 		      }
 		     
-		}
+	}
 				
-		public void eredmenySzamolProc() {
+	public void eredmenySzamolProc() {
 			
 			 szamolo.setSzam_1(Float.parseFloat(muvSor[0]));
 		     szamolo.setSzam_2(Float.parseFloat(muvSor[2]));
@@ -366,13 +366,13 @@ public class Menu implements ActionListener {
 		     ertekNullazo();
 		    
 		     eredmeny = szamolo.getResz_osszeg();		
-		}
+	}
 		
-		public void ertekNullazo() {
+	public void ertekNullazo() {
 			
 			szam1 = "";
 		    szam2 = "";
 		    muvJel = "";
 			
-		}
+	}
 }
