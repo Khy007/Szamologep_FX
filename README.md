@@ -11,4 +11,5 @@ Számológép project - Java Swing-ben és Bean vezérlésekkel.
  <s>   //Összetett számolási feladatok integrálása </s>
  
 	*Számológép kinézetének "beanesítése"
+	*BUG fixek
 	*Kód egyszerűsítés  
