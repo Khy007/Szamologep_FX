@@ -49,18 +49,28 @@ public class Menu implements ActionListener {
 	JButton memTorloGomb = new JButton("MC");
 		
 	Border blackline;
+	
 	private String bemenet;
+	
 	private static Muveletek szamolo = (Muveletek)Program.factory.getBean("muveletek");
 	private static Float eredmeny;
+	
 	private String szam1 = "";
 	private String szam2 = "";
 	private String muvJel = "";
 	private String tempSzam1 = "";
 	private String tempSzam2 = "";
 	private String tempJel = "";
+	
 	private int jelolo;
+	
 	private String[] muvSor = new String[3];
+	
 	private boolean elojelValtasVolt = false;
+	private boolean negyzetGyokValtas = false;
+	private boolean hatvanyValtas = false;
+	private boolean fuggvenyValtas = false;
+	
 	private boolean egyszeruSzamolo = true;
 			
 	public boolean isEgyszeruSzamolo() {
@@ -191,11 +201,15 @@ public class Menu implements ActionListener {
 				osztodGomb.setActionCommand("/");
 				tizedesGomb.setActionCommand(".");
 				elojelGomb.setActionCommand("");
+				ngyokGomb.setActionCommand("");
+				hatvanyGomb.setActionCommand("");
+				fuggvenyGomb.setActionCommand("");
 				
 				torloGomb.addActionListener(new ActionListener() {	
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						kiiratas.setText("");
+						szamoltOsszeg.setText("");
 						ertekNullazo();
 					}
 				});
@@ -242,6 +256,9 @@ public class Menu implements ActionListener {
 			osztodGomb.addActionListener(this);
 			visszaTorloGomb.addActionListener(this);
 			reszTorloGomb.addActionListener(this);
+			ngyokGomb.addActionListener(this);
+			hatvanyGomb.addActionListener(this);
+			fuggvenyGomb.addActionListener(this);
 			
 			nullaGomb.addActionListener(this);
 			egyesGomb.addActionListener(this);
@@ -294,29 +311,83 @@ public class Menu implements ActionListener {
 										
 				if (muvSor[2].isEmpty() && muvSor[1].isEmpty()) {
 					//Első szám előjelváltása
-					tempSzam1 = Integer.toString(0-Integer.valueOf(szam1));						
+					tempSzam1 = Integer.toString(0-Integer.valueOf(szam1));	
+					szamoltOsszeg.setText(tempSzam1);
 				}else {
 					//Második szám előjelváltása
-					System.out.println("Masodik szam elojel valtas");
 					elojelValtasVolt = true;
 					tempSzam2 = Integer.toString(0-Integer.valueOf(muvSor[2]));
-					muvSor[2] = tempSzam2;					
+					muvSor[2] = tempSzam2;	
+					szamoltOsszeg.setText(muvSor[0]+muvSor[1]+tempSzam2);
 				}
 					
 			
 			}
 			
+			if (e.getSource() == ngyokGomb) {
+				bemenetAlakito(kiiratas.getText());
+										
+				if (muvSor[2].isEmpty() && muvSor[1].isEmpty()) {
+					//Első szám gyökvonás
+					tempSzam1 = Double.toString(Math.sqrt(Double.valueOf(muvSor[0])));
+					szamoltOsszeg.setText(tempSzam1);
+				}else {
+					//Második szám gyökvonás
+					negyzetGyokValtas = true;
+					tempSzam2 = Double.toString(Math.sqrt(Double.valueOf(muvSor[2])));
+					muvSor[2] = tempSzam2;
+					szamoltOsszeg.setText(muvSor[0]+muvSor[1]+tempSzam2);					
+				}
+					
+			
+			}
+			
+			if (e.getSource() == hatvanyGomb) {
+				bemenetAlakito(kiiratas.getText());
+										
+				if (muvSor[2].isEmpty() && muvSor[1].isEmpty()) {
+					//Első szám négyzetre emelés
+					tempSzam1 = Double.toString(Math.pow(Double.valueOf(muvSor[0]), 2));
+					szamoltOsszeg.setText(tempSzam1);
+				}else {
+					//Második szám négyzetre emelés
+					hatvanyValtas = true;
+					tempSzam2 = Double.toString(Math.pow(Double.valueOf(muvSor[2]), 2));
+					muvSor[2] = tempSzam2;	
+					szamoltOsszeg.setText(muvSor[0]+muvSor[1]+tempSzam2);
+				}
+					
+			
+			}
+			
+			if (e.getSource() == fuggvenyGomb) {
+				bemenetAlakito(kiiratas.getText());
+										
+				if (muvSor[2].isEmpty() && muvSor[1].isEmpty()) {
+					//Első szám fuggveny 1/x
+					tempSzam1 = Float.toString(1 / Float.valueOf(muvSor[0]));
+					szamoltOsszeg.setText(tempSzam1);
+				}else {
+					//Második szám fuggveny 1/x
+					fuggvenyValtas = true;
+					tempSzam2 = Float.toString(1 / Float.valueOf(muvSor[2]));
+					muvSor[2] = tempSzam2;	
+					szamoltOsszeg.setText(muvSor[0]+muvSor[1]+tempSzam2);
+				}								
+			}
+			
+			
 			if (e.getSource() == muveletElvegzo) {
-				if (elojelValtasVolt) {
+				if (elojelValtasVolt || negyzetGyokValtas || hatvanyValtas || fuggvenyValtas) {
 					eredmenySzamolProc();
 					kiiratas.setText(kiiratas.getText() + eredmeny);
-					szamoltOsszeg.setText(eredmeny.toString());
+					szamoltOsszeg.setText("="+eredmeny.toString());
 					elojelValtasVolt =  false;
 				}else {
 					bemenetAlakito(kiiratas.getText());
 					eredmenySzamolProc();
 					kiiratas.setText(kiiratas.getText() + eredmeny);
-					szamoltOsszeg.setText(eredmeny.toString());
+					szamoltOsszeg.setText("="+eredmeny.toString());
 				}
 				
 			}

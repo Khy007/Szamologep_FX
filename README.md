@@ -4,9 +4,11 @@ Számológép project - Java Swing-ben és Bean vezérlésekkel.
 
 	-Ver 1.0 általános számológép funkciók integrálása
 	-Ver 1.0.1 előjelváltás implementálása
+	-Ver 1.0.2 összetett számolási feladatok integrálása
 
 >>TODO:
 
-	*Összetett számolási feladatok integrálása
+ <s>   //Összetett számolási feladatok integrálása </s>
+ 
 	*Számológép kinézetének "beanesítése"
 	*Kód egyszerűsítés  
